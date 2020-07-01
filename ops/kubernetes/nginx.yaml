@@ -1,0 +1,57 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    name: nginx
+  name: nginx
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        name: nginx
+    spec:
+      containers:
+      - image: docker.io/jwnwilson/jwnwilson_nginx:0.1.350
+        name: nginx
+        ports:
+        - containerPort: 80
+        imagePullPolicy: Always
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: 10m
+          limits:
+            memory: "128Mi"
+            cpu: 50m
+        volumeMounts:
+          - mountPath: /app/src/server/media
+            name: media
+      restartPolicy: Always
+      volumes:
+        - name: media
+          persistentVolumeClaim:
+            claimName: media
+status: {}
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    name: nginx
+  name: nginx
+spec:
+  ports:
+  - name: "nginx"
+    port: 80
+    targetPort: 80
+  selector:
+    name: nginx
+  type: NodePort
+status:
+  loadBalancer: {}

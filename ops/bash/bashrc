@@ -1,0 +1,4 @@
+#! /bin/bash
+SHELL=/bin/bash
+DEV=False
+PIPENV_VENV_IN_PROJECT=True

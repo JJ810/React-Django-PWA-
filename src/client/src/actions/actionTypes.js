@@ -1,0 +1,10 @@
+/*
+ * action types
+ */
+export const GET_API_DATA = 'GET_API_DATA';
+export const GET_DATA_SUCCESS = 'GET_DATA_SUCCESS';
+export const GET_DATA_FAILURE = 'GET_DATA_FAILURE';
+export const COMPONENT_NEEDS_UPDATE = 'COMPONENT_NEEDS_UPDATE';
+export const COMPONENT_UPDATED = 'COMPONENT_UPDATED';
+export const GET_BLOG_DATA = 'GET_BLOG_DATA';
+export const BLOG_RECEIVED = 'BLOG_RECEIVED';
